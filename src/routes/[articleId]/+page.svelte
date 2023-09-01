@@ -3,14 +3,14 @@
 
 	export let data: PageData;
 
-	$: ({ article } = data);
+	$: ({ post } = data);
 </script>
 
-<form action="?/updateArticle" method="post">
-	<h3>Editing: {article.title}</h3>
+<form action="?/updatepost" method="post">
+	<h3>Editing: {post.title}</h3>
 	<label for="title">Title</label>
-	<input type="text" name="title" id="title" value={article.title} />
+	<input type="text" name="title" id="title" value={post.title} />
 	<label for="content">Content</label>
-	<textarea name="content" id="content" cols="30" rows="10" value={article.content} />
+	<textarea name="content" id="content" cols="30" rows="10" value={post.content} />
 	<button type="submit">Add Update</button>
 </form>

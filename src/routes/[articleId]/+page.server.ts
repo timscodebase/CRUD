@@ -2,34 +2,34 @@ import { error, type Actions, type ServerLoad, fail } from "@sveltejs/kit";
 import db from "$lib/server/prisma";
 
 export const load: ServerLoad = async ({ params }) => {
-  const getArticle = async () => {
-    const article = await db.article.findUnique({
+  const getpost = async () => {
+    const post = await db.post.findUnique({
       where: {
-        id: Number(params.articleId),
+        id: Number(params.postId),
       },
     });
-    if (!article) {
-      throw error(404, "Article not found");
+    if (!post) {
+      throw error(404, "post not found");
     }
 
-    return article;
+    return post;
   }
 
   return {
-    article: await getArticle(),
+    post: await getpost(),
   }
 };
 
 export const actions: Actions = {
-		updateArticle: async ({ request, params }) => {
+		updatepost: async ({ request, params }) => {
 			const { title, content } = Object.fromEntries(
 				await request.formData(),
 			) as { title: string; content: string };
 
 			try {
-				await db.article.update({
+				await db.post.update({
 					where: {
-						id: Number(params.articleId),
+						id: Number(params.postId),
 					},
 					data: {
 						title,
@@ -38,7 +38,7 @@ export const actions: Actions = {
 				});
 			} catch (error) {
 				console.error(error);
-				return fail(500, { message: "Failed to update article" });
+				return fail(500, { message: "Failed to update post" });
 			}
 
 			return {

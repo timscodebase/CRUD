@@ -10,10 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Article {
-  id      Int    @id @default(autoincrement())
-  title   String
-  content String
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String?
+  slug      String   @unique
+  published Boolean  @default(false)
 }
 
 model Todo {
@@ -21,4 +25,13 @@ model Todo {
   title     String
   completed Boolean  @default(false)
   createdAt DateTime @default(now())
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
