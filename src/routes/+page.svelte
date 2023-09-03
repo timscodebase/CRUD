@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import Button from '$lib';
 
 	export let data: PageData;
 	$: ({ posts } = data);
@@ -7,17 +8,21 @@
 
 <div class="grid">
 	<div>
-		<h2>posts:</h2>
+		<h2>Posts</h2>
 		{#each posts as post}
 			<post>
 				<header>{post.title}</header>
 				<p>{post.content}</p>
-				<form action="?/deletepost&id={post.id}" method="post">
-					<button type="submit" class="outline secondart">Delete post</button>
-				</form>
-				<a href="/{post.id}" role="button" class="outline contrast" style="width: 100%">
-					Edit post
-				</a>
+				<div class="button-box">
+					<form action="?/deletepost&id={post.id}" method="post">
+						<button type="submit" class="outline secondart">Delete Post</button>
+					</form>
+					<form action="?/editpost&id={post.id}" method="post">
+						<button type="submit" class="outline contrast">
+							Edit Post
+						</button>
+					</form>
+				</div>
 			</post>
 		{/each}
 	</div>
@@ -30,3 +35,11 @@
 		<button type="submit">Add post</button>
 	</form>
 </div>
+
+<style>
+	.button-box {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 1rem;
+	}
+</style>

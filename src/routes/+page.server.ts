@@ -44,5 +44,15 @@ export const actions: Actions = {
     return {
       status: 200,
     }
-  }
+  },
+  editpost: async ({ url }) => {
+    const id = url.searchParams.get("id");
+    // redirect to the edit page
+    return {
+      status: 303,
+      headers: {
+        Location: id,
+      },
+    }
+  },
 };
