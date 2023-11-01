@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		%sveltekit.head%
+		<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+		<script
+			src="https://cdn.tiny.cloud/1/042rlday1brijmr803gdpe5l62y3rq6pmwgq59bv63mgq6ac/tinymce/6/tinymce.min.js"
+			referrerpolicy="origin"
+		></script>
+	</head>
 
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-	<meta name="viewport" content="width=device-width" />
-	%sveltekit.head%
-	<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-</head>
-
-<body data-sveltekit-preload-data="hover">
-	<div style="display: contents">%sveltekit.body%</div>
-</body>
-
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
 </html>

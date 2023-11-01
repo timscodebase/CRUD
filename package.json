@@ -39,6 +39,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@prisma/client": "^5.2.0"
+		"@prisma/client": "^5.2.0",
+		"@tinymce/tinymce-svelte": "^1.0.1",
+		"tinymce": "^6"
 	}
 }

@@ -1,40 +1,13 @@
-import { fail, type Actions, type ServerLoad } from '@sveltejs/kit'
+import { type Actions, fail, redirect, type ServerLoad } from '@sveltejs/kit'
 import db from '$lib/server/prisma'
-import { slugify } from '$lib'
 
 export const load: ServerLoad = async () => {
 	return {
-		posts: await db.post.findMany()
+		posts: await db.post.findMany().then((posts) => posts.sort((a, b) => b.createdAt - a.createdAt))
 	}
 }
 
 export const actions: Actions = {
-	createpost: async (event) => {
-		const { title, content } = Object.fromEntries(await event.request.formData()) as {
-			title: string
-			content: string
-		}
-		if (!title || !content) {
-			return fail(400, { message: 'Missing title or content' })
-		}
-		const slug = slugify(title)
-
-		try {
-			await db.post.create({
-				data: {
-					content,
-					slug,
-					title
-				}
-			})
-		} catch (error) {
-			console.error(error)
-			return fail(500, { message: 'Could not create the post' })
-		}
-		return {
-			status: 201
-		}
-	},
 	deletepost: async ({ url }) => {
 		const id = url.searchParams.get('id')
 		if (!id) {
@@ -51,9 +24,7 @@ export const actions: Actions = {
 			return fail(500, { message: 'Could not delete the post' })
 		}
 
-		return {
-			status: 200
-		}
+		throw redirect(303, `/`)
 	},
 	editpost: async ({ url }) => {
 		const id = url.searchParams.get('id')
