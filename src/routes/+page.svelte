@@ -10,11 +10,3 @@
 		<PostList {posts} />
 	</div>
 </div>
-
-<style>
-	.button-box {
-		display: flex;
-		justify-content: space-between;
-		padding-bottom: 1rem;
-	}
-</style>

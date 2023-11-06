@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   '@prisma/client':
-    specifier: ^5.2.0
+    specifier: ^5.5.2
     version: 5.5.2(prisma@5.5.2)
   '@tinymce/tinymce-svelte':
     specifier: ^1.0.1

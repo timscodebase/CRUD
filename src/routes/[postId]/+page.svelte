@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { PageData } from '../[postId]/$types';
+	import type { PageData } from '../[postId]/$types'
 
-	export let data: PageData;
+	export let data: PageData
 
-	$: ({ post } = data);
+	$: ({ post } = data)
+	console.log(data)
 </script>
 
 <form action="?/updatepost" method="post">
